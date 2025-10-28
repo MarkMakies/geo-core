@@ -14,8 +14,6 @@ This project uses a dual-license model:
 | Code            | `*.py` (CadQuery scripts, utilities)                     | MIT              |
 | Designs/Media   | `*.stl`, `*.step`, `*.3mf`, `*.png`, `*.jpg`, `*.pdf`, `*.md` (build cards) | CC BY-SA 4.0     |
 | Documentation   | Project docs (including this file) unless noted          | CC BY-SA 4.0     |
-| Third-party deps| Bundled libraries, models, or textures                   | Their own license (see notices) |
-
 
 ---
 
