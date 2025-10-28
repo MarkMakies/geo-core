@@ -3,7 +3,7 @@
 ### Overview
 I came across hundreds of cardboard cores, and rather than throwing them away, I designed several types of hubs to connect them together.
 
-If you have cardboard cores with an inner diameter of 25 mm, all you need to do is 3D print the hubs. Get the STL files **here**.
+If you have cardboard cores with an inner diameter of 25 mm, all you need to do is 3D print the hubs, provided in STL format, ready for slicing.
 
 You can also automatically generate **custom-sized STL files** with a Python script—see below.
 
