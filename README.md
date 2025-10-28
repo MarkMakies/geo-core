@@ -1,132 +1,150 @@
-# GeoCore, Cardboard-Core Kids Construction Set — Hubs & (optional) Rods
-*Generated with CadQuery*
+## GeoCore: Kids 3D Construction Set
 
-## Overview
-I came across hundreds of cardboard cores and, rather than throwing them away, designed a few hubs to make a kids’ toy. As the idea grew, I used AI (gpt-5-pro) to help propose hub/connector types, expanded to connecting rods, and then switched to Python to generate STL shapes.  
-The result is a set of hubs and rods for building a wide range of kid-friendly 3D models.
+### Overview
+I came across hundreds of cardboard cores, and rather than throwing them away, I designed several types of hubs to connect them together.
 
-## What This Is
-A **parametric, 3D-printable hub/joiner system** for building wire-frame solids and space frames using cardboard cores as the “bars.”
+If you have cardboard cores with an inner diameter of 25 mm, all you need to do is 3D print the hubs. Get the STL files **here**.
 
-### Specs
-- **Bars (cores):** 102 mm long tubes; **OD** 30 mm; **ID** 25 mm (stock on hand).
-- **Hubs (printed):** Small spherical nodes with press-fit pegs matched to the cores.
-- **Output:** Running the Python/CadQuery script exports one STL per hub type to `./stl/` (optional printed rods can be added later).
-- **Learning goals:** Fun for kids; explore symmetry, Platonic solids, geodesics, trusses, golden ratio (φ), √2, etc.
-- **Tooling:** Targets **CadQuery 2.x**; exports watertight, FDM-friendly solids with rounded edges.
+You can also automatically generate **custom-sized STL files** with a Python script—see below.
 
-## How It Works (Plain English)
-- Each hub is a **sphere** with several **pegs** that **press-fit** into the cores.  
-- The **sphere size** is computed from the tightest angle between any two pegs so peg roots don’t collide, while preserving minimum wall thickness.  
-- Fit and appearance are controlled by a few parameters (see **Controls** below).
+With these printed hubs and a handful of cardboard cores, you can build a wide range of 3D structures, from simple cubes and domes to complex geodesic frames and lattices. Each hub type provides a different connection geometry.
 
-## Controls
-    press_fit_clearance   # Default yields a snug fit; increase toward +0.3 mm for looser, decrease/negative for tighter.
-    insertion_depth       # How deep the core slides onto the peg.
-    BALL_R_OVERRIDE       # Force a single sphere radius for all hubs (worst-case safe ~ 2*plug_r + safety; see code).
+---
 
-*Tip:* If you prefer a unified look, set `BALL_R_OVERRIDE` to a constant that satisfies the worst-case hub.
 
-## Quick Start
+### Hubs
+<img src="./images/hubs3.jpg" width="800"/>
 
-### Install (Python 3.10+ recommended)
-    pip install cadquery
-    # or with conda/mamba:
-    conda install -c conda-forge cadquery
+*(Hubs arranged in order, top-left to bottom-right.)*
 
-### Export the STLs
-    python joiner-factory.py
-    # Exports: ./stl/*.stl for every hub listed in the script's items list.
+##### 1. `straight_2.stl` — Inline Coupler *(top 1, pink)*
+Connects two cores end-to-end in a straight line.  
+Extend a rods’s length to build long beams and spans.
 
-### Print
-- **Material:** PLA (easy) or PETG (tougher).  
-- **Infill:** 30–40% gyroid; **perimeters:** 3–4.  
-- **Layer height:** 0.2 mm works well.  
-- **Supports:** Not needed (pegs are axial).  
-- **Optional post-proc:** Chamfer cardboard tube ends by 0.3–0.5 mm for easier insertion.
+##### 2. `elbow_90_2.stl` — Right-Angle Elbow *(top 2, yellow)*
+Joins two cores at a 90° angle.  
+Useful for corners, mazes, or rectangular frames.
 
-### Fit Tuning (if needed)
-- **Too tight?** Increase `press_fit_clearance` in +0.05 mm steps and re-export.  
-- **Too loose?** Decrease by −0.05 mm (small negative values produce slightly oversize pegs).
+##### 3. `corner_cube_3.stl` — 3-Way Orthogonal Corner *(top 3, green)*
+Connectors in the +X, +Y, and +Z directions.  
+Build cubes, boxes, and scaffolds.
 
-## Generated Files (STLs) & Suggested Uses
-All files are written to `./stl/`.
+##### 4. `tetra_3.stl` — 3-Way ~60° Connector *(top 4)*
+Three pegs meet at tetrahedral angles (≈60°).  
+Create tetrahedra, triangular lattices, or trusses.
 
-- `straight_2.stl` — Inline coupler (extend a bar or make long edges).  
-  *Use:* Span longer edges, fix mistakes, quick prototyping.
+##### 5. `octa_4.stl` — 4-Way Orthogonal Pair Connector *(mid 1, orange)*
+Four pegs arranged in perpendicular pairs.  
+Build octahedra, space frames, or octet-truss modules.
 
-- `elbow_90_2.stl` — Right-angle elbow (L-turn).  
-  *Use:* Orthogonal rails/mazes, neat corners in frames.
+##### 6. `icosa_5.stl` — 5-Way Icosahedral Vertex *(mid 2, teal)*
+Five pegs radiate evenly from the center at about 63.43° between each.  
+Assemble domes, geodesic spheres, and high-strength frameworks.
 
-- `corner_cube_3.stl` — 3-way orthogonal corner (+X, +Y, +Z).  
-  *Use:* Cubes, cuboids, scaffolds; great “corner” piece.
+##### 7. `dodeca_3.stl` — 3-Way (Dodeca) *(mid 3, light purple)*
+Three pegs meet at 108°, the golden-ratio angle of pentagons.  
+Construct pentagons, decagons, and φ-based geometries.
 
-- `tetra_3.stl` — 3-way ~60° (tetra vertex).  
-  *Use:* Tetrahedra, triangular lattices, light trusses.
+##### 8. `cubic_6.stl` — 6-Way Cartesian Connector *(center, blue)*
+Six pegs aligned along ±X, ±Y, ±Z axes.  
+Build voxel grids, towers, bridges, and frame structures.
 
-- `octa_4.stl` — 4-way (pairs of 90° in planes).  
-  *Use:* Octahedra, triangulated frames, octet-truss modules.
+##### 9. `trigonal_planar_3.stl` — 3-Way Planar *(bottom 1, yellow-green)*
+Three pegs in a single plane, equally spaced at 120°.  
+Use for hexagonal or triangular tiling patterns and Y-junctions.
 
-- `icosa_5.stl` — 5-way (icosa vertex).  
-  *Use:* Domes/spheres (V=1), geodesic modules, positive curvature.
+##### 10. `hex_planar_6.stl` — 6-Way Planar *(bottom 2, blue)*
+Six coplanar pegs forming a hexagon (60° spacing).  
+Use to create honeycomb sheets or dense triangular meshes.
 
-- `dodeca_3.stl` — 3-way ~108° (dodeca vertex).  
-  *Use:* Pentagons, decagons, golden-ratio builds.
+##### 11. `tetrahedral_4.stl` — 4-Way Regular Tetrahedral *(bottom 3, green)*
+Four pegs arranged at 109.47°, matching tetrahedral geometry.  
+Used for diamond-like lattices, rigid trusses, or alternating with `octa_4` for octet structures.
 
-- `cubic_6.stl` — 6-way ±X/±Y/±Z.  
-  *Use:* Voxel/Cartesian grids, towers, bridges, Manhattan frames.
+---
 
-- `trigonal_planar_3.stl` — 3 in a plane @ 120°.  
-  *Use:* Hex/tri tilings, Y-junctions, antiprisms.
+### Rods
+<img src="./images/cores.jpg" width="800"/>
 
-- `hex_planar_6.stl` — 6 in a plane @ 60°.  
-  *Use:* Honeycomb sheets, higher-frequency triangle meshes.
+I started with a box of cardboard cores. They are 102 mm long, with an inner diameter of 25 mm and outer diameter of 30 mm.
 
-- `tetrahedral_4.stl` — 4 at ~109.47° (regular-tetra directions).  
-  *Use:* Diamond lattice, octet-truss (alternate with `octa_4`), super-rigid space frames.
+Ideally, we need a few different lengths. Initially, I didn’t plan to use multiple lengths, but they are essential to create all the different shapes.
 
-### Optional Printed Rods (not generated by default)
-Add factories for common lengths:
-- `L = 102 mm`
-- `√2 · L ≈ 144 mm`
-- `φ · L ≈ 165 mm`
+- **√2** for square diagonals: In a square with side length L, the diagonal measures L·√2, so a √2·L rod fits perfectly across a square’s corner-to-corner span.
+
+- **φ** for pentagon diagonals: In a regular pentagon with side length L, the long diagonal is φ·L (golden ratio), so a φ·L rod matches that vertex-to-vertex distance.
+
+- **2×** for larger models: A 2·L rod simply doubles the base length to scale up spans and frames while keeping proportions consistent. 
+
+So if the base size is 102 mm:
+- `L = 102 mm`  
+- `√2 · L ≈ 144 mm`  
+- `φ · L ≈ 165 mm`  
 - `2L = 204 mm`
 
-*Why mix lengths?* Unlock square diagonals (√2) and pentagon diagonals (φ), and build larger models with fewer hubs (2L).
+Rod factories are included in the script and STL files as well. You may need to adjust clearances depending on your printer and materials.  *(Note that I've only tested parameters that match my cardboard cores.*)
 
-## Suggested Builds for Kids (Starter Ideas)
-- **Cube / Rectangular box:** `corner_cube_3`, `cubic_6`, `straight_2`.  
-- **Tetrahedron / Octahedron:** `tetra_3` or `octa_4`.  
-- **V = 1 Dome:** Ring + cap using `icosa_5`.  
-- **Octet-truss tower:** Alternate `tetrahedral_4` and `octa_4`.  
-- **Honeycomb wall:** Tile with `hex_planar_6`; swap a few edges to different lengths to explore curvature.  
-- **Pentagram ring:** `dodeca_3` with `L` edges and `φ·L` diagonals.
+<img src="./images/rods.jpg" width="800"/>
 
-## FAQ
+---
 
-**Why do some hubs have a bigger center sphere?**  
-The script sizes each sphere to prevent peg-root overlap at the hub’s tightest angle. Nodes around ~60° separations (e.g., `tetra_3`, `octa_4`, `icosa_5`) need larger spheres. Prefer a uniform look? Set `BALL_R_OVERRIDE` and re-export.
+### Generate Your Own Custom-Sized Hubs
 
-**Can I use different core sizes?**  
-Yes. Change `BAR_OD` / `BAR_ID` and regenerate (you may also need to retune `press_fit_clearance`).
+The script creates parametric, 3D-printable hubs and rods for building wireframe solids and space frames, in STL format.
 
-**Will this need supports?**  
-No. Parts are oriented to print cleanly without supports on standard FDM printers.
+There are 11 different hub types.  Each hub offers a distinct set of connection directions and angles, (planar, orthogonal, and the tetrahedral/octahedral/icosahedral families) so builders have the specific joints needed to assemble squares, triangles, pentagons, 3D lattices, and geodesic structures accurately.
 
-## Repository Structure
-    .
-    ├── joiner-factory.py      # CadQuery script (generate all STLs)
-    ├── stl/                   # Output folder (created on export)
-    └── README.md              # This file
+Each hub is a sphere with several pegs that press-fit into the cores.  
 
-## Contributing / Remixing
-- PRs welcome: new hub families, printable rods, parameter sets for different tube sizes, assembly demos.  
-- Built something cool? Share photos or a link on your platform of choice!
+The sphere size is calculated from the smallest angle between any two pegs so they don’t collide, while keeping a safe wall thickness. Nodes with 60° separations (e.g., `tetra_3`, `octa_4`, `icosa_5`) need larger spheres.
 
-## License
-Choose an open license you’re comfortable with (e.g., **MIT** / **CC-BY-SA**). Add it here and include a `LICENSE` file.
+Fit and appearance are controlled by only a few parameters.
 
-## Credits
-- **CadQuery 2.x**  
-- **Kids** who stress-tested the parts  
-- **gpt-5-pro** for brainstorming hub sets and geometry recipes
+##### Parameters
+```
+HUB_FIT_CLEARANCE = -0.3     # Negative oversize for grip
+HUB_INSERTION_DEPTH = 22.0    # Peg contact length
+
+ROD_OD = 30.0
+ROD_ID = 25.0
+ROD_LENGTH = 102.0
+ROD_END_CHAMFER = 0.5
+```
+
+If you prefer a uniform hub size, set the **BALL_R_OVERRIDE** parameter to a constant that fits the largest hub.
+
+```
+from
+BALL_R_OVERRIDE = None
+to
+BALL_R_OVERRIDE = 2.0 * plug_r + safety
+```
+
+##### Run
+
+Install CadQuery:
+```bash
+pip install cadquery
+```
+
+Then run the script to generate 11 hubs and 4 rods as STL files in **./stl/**.
+
+---
+
+#### 3D Printing
+I used SuperSlicer and a Prusa i3 MK3S+ with PLA. 
+
+<img src="./images/prints1.jpg" width="800"/>
+
+Random PLA filaments I had in stock, printinted in draft quality.
+
+<img src="./images/prints2.jpg" width="800"/>
+
+With cardboard cores attached
+
+---
+
+#### Build Things
+<img src="./images/assem1.jpg" width="800"/>
+
+The above pics represents what ChatGPT5 came up with using these parts.
