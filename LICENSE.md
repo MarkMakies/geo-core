@@ -1,10 +1,9 @@
-<!-- filename: LICENSE.md -->
 # License
 
-This project uses a **dual-license** model:
+This project uses a dual-license model:
 
-- **Code (Python/CadQuery scripts):** MIT License  
-- **Designs & Media (STLs, CAD models, build cards, photos, and other non-code assets):** Creative Commons Attribution–ShareAlike 4.0 International (**CC BY-SA 4.0**)
+- Code (Python/CadQuery scripts): MIT License  
+- Designs & Media (STLs, CAD models, build cards, photos, and other non-code assets): Creative Commons Attribution–ShareAlike 4.0 International (CC BY-SA 4.0)
 
 ---
 
@@ -22,7 +21,7 @@ This project uses a **dual-license** model:
 
 ## Usage Summary
 
-- **MIT (code):** You may use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software, provided you include the copyright and license notice. Provided **as-is** without warranty.
-- **CC BY-SA 4.0 (designs/media):** You may share and adapt the material for any purpose, even commercially, **provided** you:
-  - **Attribute** the original (see Attribution below), and
-  - **ShareAlike:** Distribute adaptations under **the same license (CC BY-SA 4.0)**.
+- **MIT (code):** You may use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software, provided you include the copyright and license notice. Provided as-is without warranty.
+- **CC BY-SA 4.0 (designs/media):** You may share and adapt the material for any purpose, even commercially, provided you:
+  - Attribute the original (see Attribution below), and
+  - ShareAlike: Distribute adaptations under the same license (CC BY-SA 4.0).
