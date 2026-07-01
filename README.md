@@ -148,3 +148,5 @@ With cardboard cores attached
 <img src="./images/assem1.jpg" width="800"/>
 
 The above pics represents what ChatGPT5 came up with using these parts.
+
+*More projects: https://makies.au*
